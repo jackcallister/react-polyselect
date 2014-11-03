@@ -1,15 +1,19 @@
 {
-  "name": "react-multiselect",
-  "version": "1.0.0",
+  "name": "react-polyselect",
+  "version": "0.0.1",
   "description": "",
-  "main": "src/multiselect.js",
+  "main": "src/polyselect.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Jack Callister",
   "license": "ISC",
   "dependencies": {
     "react": "^0.12.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jarsbe/react-polyselect.git"
   },
   "devDependencies": {
     "jsx-loader": "^0.12.1",
