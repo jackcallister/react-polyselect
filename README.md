@@ -1,4 +1,4 @@
 react-polyselect
 ================
 
-Currently underdevelopment. Do not use!
+Currently under development. Do not use!
