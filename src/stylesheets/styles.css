@@ -1,11 +1,9 @@
 .polyselect {
-  display: inline-block;
+  display: block;
   width: 250px;
   position: relative;
-}
-
-.polyselect-select {
-  border-radius: 6px;
+  margin-bottom: 2em;
+  border-radius: 8px;
   background: linear-gradient(-180deg, #FFFFFF 0%, #F2F2F2 100%);
   border: 1px solid #9C9C9C;
   font-family: Helvetica-Light;
@@ -13,12 +11,13 @@
   color: #919191;
 }
 
-.polyselect-select > span {
+
+.polyselect-select {
   padding: 6px 8px 4px 8px;
   display: block;
 }
 
-.polyselect-select > span:after {
+.polyselect-select:after {
   content: "";
   background: url("../images/chevron.png");
   width: 8px;
@@ -33,18 +32,30 @@
   padding: 0 8px 6px 8px;
 }
 
-.polyselect-active .polyselect-select {
-  background: #FFFFFF;
-}
-
 .polyselect-active {
-  border-radius: 8px;
-  background-image: linear-gradient(-180deg, #FFFFFF 0%, #FFFFFF 100%);
-  box-shadow:         0px 12px 19px 0px rgba(0,0,0,0.37);
+  background: #FFFFFF;
 }
 
 .polyselect-inactive .polyselect-dropdown {
   display: none;
+}
+
+.polyselect-active {
+  border-radius: 8px 8px 0 0;
+}
+
+.polyselect-active .polyselect-dropdown {
+  position: absolute;
+  width: calc(100% + 2px);
+  margin-left: -1px;
+  top: 100%;
+  box-sizing: border-box;
+  background: white;
+  border-left: 1px solid #9C9C9C;
+  border-right: 1px solid #9C9C9C;
+  border-bottom: 1px solid #9C9C9C;
+  box-shadow: 0px 12px 19px 0px rgba(0,0,0,0.35);
+  border-radius: 0 0 8px 8px;
 }
 
 .polyselect input[type="text"] {
@@ -56,10 +67,6 @@
 
 .polyselect input[type="checkbox"] {
   margin-left: 0;
-}
-
-.polyselect input:focus{
-  outline: 0;
 }
 
 .polyselect-option {

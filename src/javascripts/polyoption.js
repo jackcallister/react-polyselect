@@ -3,14 +3,14 @@
 var React = require('react');
 
 var Polyoption = React.createClass({
-  toggle: function() {
+  toggleCheck: function() {
     this.setState({
       selected: !this.state.selected
     }, function() {
       if (this.state.selected) {
-        this.props.onCheck();
+        this.props.onOptionCheck();
       } else {
-        this.props.onUncheck();
+        this.props.onOptionUncheck();
       }
     });
   },
@@ -31,7 +31,7 @@ var Polyoption = React.createClass({
 
     return(
       <div className={"polyselect-option polyselect-option-" + highlightClass}>
-        <input type="checkbox" checked={this.state.selected} onChange={this.toggle} value={this.props.value} />
+        <input type="checkbox" checked={this.state.selected} onChange={this.toggleCheck} value={this.props.value} />
         <span>{this.props.title}</span>
       </div>
     );
