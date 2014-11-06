@@ -3,6 +3,7 @@
 var React = require('react');
 
 var Polyoption = React.createClass({
+
   toggle: function(index) {
     this.setState({
       selected: !this.state.selected
@@ -17,7 +18,8 @@ var Polyoption = React.createClass({
 
   getDefaultProps: function() {
     return {
-      selected: false
+      selected: false,
+      highlighted: false
     };
   },
 
@@ -26,8 +28,16 @@ var Polyoption = React.createClass({
   },
 
   render: function() {
+    var highlightClass;
+
+    if(this.props.highlighted) {
+      highlightClass = "active";
+    } else {
+      highlightClass = "inactive";
+    }
+
     return(
-      <div>
+      <div className={"polyselect-option polyselect-option-" + highlightClass}>
         <input type="checkbox" checked={this.state.selected} onChange={this.toggle} value={this.props.value} />
         <span>{this.props.title}</span>
       </div>
