@@ -1,45 +1,44 @@
 /** @jsx React.DOM */
 var React = require('react/addons');
 
-var SearchBar = React.createClass({
-  onTypeahead: function(event) {
-    this.props.typeaheadHandler(event.target.value)
-  },
-
-  render: function() {
-    return(
-      <input type="text" onChange={this.onTypeahead} />
-    );
-  }
-});
-
 var Polyselect = React.createClass({
   keyUp: function(event) {
     var code = event.keyCode;
     var highlightedIndex = this.state.highlightedIndex;
-    var lastIndex = this.state.matchingOptions.length;
-
+    var lastIndex = this.props.children.length;
     --lastIndex;
 
+    // Up
     if(code == 38) {
       --highlightedIndex;
       if(highlightedIndex < 0) {
         highlightedIndex = lastIndex;
       }
+    // Down
     } else if (code == 40) {
       ++highlightedIndex;
       if(highlightedIndex > lastIndex) {
         highlightedIndex = 0;
       }
+    // Enter
     } else if (code == 13) {
-      selectedOption = this.refs["polyselect-option-" + highlightedIndex];
-      selectedOption.setState({
-        selected: !selectedOption.state.selected
-      });
+      if(this.refs.polyselect.getDOMNode().classList.contains("polyselect-inactive")) {
+        this.setState({
+          displayDropdown: true
+        });
+      } else {
+        var selectedOption = this.refs["polyselect-option-" + highlightedIndex];
+        selectedOption.setState({
+          selected: !selectedOption.state.selected
+        });
+      }
+    // Esc
     } else if (code == 27) {
       this.setState({
         displayDropdown: false
-      })
+      }, function() {
+        console.log(this.value());
+      });
     }
 
     this.setState({
@@ -50,53 +49,48 @@ var Polyselect = React.createClass({
   toggleDisplay: function() {
     this.setState({
       displayDropdown: !this.state.displayDropdown
-    }, function(){
-      if (this.props.search) {
-        this.refs.searchBar.getDOMNode().focus();
-      }
     });
   },
 
-  searchMatch: function(query, element) {
-    return new RegExp(query, 'i').test(element.props.title);
+  handleUncheck: function(index) {
+    var polyoption = this.props.children[index];
+    var values = this.state.values;
+    var index = values.indexOf(polyoption.props.value);
+
+    values.splice(index, 1);
+
+    this.setState({
+      values: values
+    });
   },
 
-  typeaheadHandler: function(query) {
-    matchingOptions = this.state.options.filter(this.searchMatch.bind(this, query));
+  handleCheck: function(index) {
+    var polyoption = this.props.children[index];
+    var values = this.state.values;
+
+    values.push(polyoption.props.value);
+
     this.setState({
-      matchingOptions: matchingOptions
+      values: values
     });
   },
 
   getInitialState: function() {
     return {
-      options: this.props.children,
-      matchingOptions: this.props.children,
       displayDropdown: false,
-      highlightedIndex: -1
+      highlightedIndex: -1,
+      values: []
     }
   },
 
   getDefaultProps: function() {
     return {
-      search: true,
       prompt: "Please select"
     };
   },
 
-  propTypes: {
-    search: React.PropTypes.bool
-  },
-
   render: function() {
-    var searchBar;
-
-    if (this.props.search) {
-      searchBar = <SearchBar typeaheadHandler={this.typeaheadHandler} ref="searchBar" />
-    }
-
     var displayClass;
-
     if (this.state.displayDropdown) {
       displayClass = "active";
     } else {
@@ -105,26 +99,32 @@ var Polyselect = React.createClass({
 
     var index = 0,
         state = this.state;
+        handleCheck = this.handleCheck,
+        handleUncheck = this.handleUncheck;
 
-    var children = React.Children.map(this.state.matchingOptions, function(child) {
+    // Loop through all the children (<polyoption>) in order
+    // to add a ref and highlighted bool.
+    var children = React.Children.map(this.props.children, function(child) {
       var highlighted = state.highlightedIndex === index;
 
-      matchingOptions = React.addons.cloneWithProps(child, {
+      var options = React.addons.cloneWithProps(child, {
         highlighted: highlighted,
-        ref: "polyselect-option-" + index
+        ref: "polyselect-option-" + index,
+        onCheck: handleCheck.bind(null, index),
+        onUncheck: handleUncheck.bind(null, index)
       });
 
       index ++;
 
-      return matchingOptions;
+      return options;
     });
 
     return(
-      <div className={"polyselect polyselect-" + displayClass}>
-        <div className="polyselect-select" onKeyUp={this.keyUp}>
+      <div className={"polyselect polyselect-" + displayClass} ref="polyselect" onKeyUp={this.keyUp} tabIndex="1">
+        <input type="hidden" ref="value" value={this.state.values} />
+        <div className="polyselect-select">
           <span onClick={this.toggleDisplay}>{this.props.prompt}</span>
           <div className="polyselect-dropdown">
-            {searchBar}
             {children}
           </div>
         </div>

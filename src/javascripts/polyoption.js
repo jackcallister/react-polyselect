@@ -3,34 +3,27 @@
 var React = require('react');
 
 var Polyoption = React.createClass({
-
-  toggle: function(index) {
+  toggle: function() {
     this.setState({
       selected: !this.state.selected
+    }, function() {
+      if (this.state.selected) {
+        this.props.onCheck();
+      } else {
+        this.props.onUncheck();
+      }
     });
   },
 
   getInitialState: function() {
     return {
-      selected: this.props.selected
+      selected: false
     }
-  },
-
-  getDefaultProps: function() {
-    return {
-      selected: false,
-      highlighted: false
-    };
-  },
-
-  propTypes: {
-    selected: React.PropTypes.bool
   },
 
   render: function() {
     var highlightClass;
-
-    if(this.props.highlighted) {
+    if (this.props.highlighted) {
       highlightClass = "active";
     } else {
       highlightClass = "inactive";
