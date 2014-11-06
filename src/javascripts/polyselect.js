@@ -8,22 +8,19 @@ var Polyselect = React.createClass({
     var lastIndex = this.props.children.length;
     --lastIndex;
 
-    // Up - Move the highlighted option up
-    // or to the bottom if on the first option
+    // Up
     if(code == 38) {
       --highlightedIndex;
       if(highlightedIndex < 0) {
         highlightedIndex = lastIndex;
       }
-    // Down - Move the highlighted option down
-    // or to the top if on the last option
+    // Down
     } else if (code == 40) {
       ++highlightedIndex;
       if(highlightedIndex > lastIndex) {
         highlightedIndex = 0;
       }
-    // Enter - Activate the dropdown, if inactive. If active
-    // set the highlighted option's state to selected
+    // Enter
     } else if (code == 13) {
       if(this.refs["react-polyselect"].getDOMNode().classList.contains("polyselect-inactive")) {
         this.setState({
@@ -33,7 +30,7 @@ var Polyselect = React.createClass({
         var selectedOption = this.refs["polyselect-option-" + highlightedIndex];
         selectedOption.toggleCheck();
       }
-    // Esc - Close the dropdown
+    // Esc
     } else if (code == 27) {
       highlightedIndex = -1;
       this.setState({
@@ -103,7 +100,7 @@ var Polyselect = React.createClass({
         handleOptionCheck = this.handleOptionCheck;
 
     // Loop through all the children (<polyoption>)
-    // to add ref and highlighted bool.
+    // to add ref, highlighted bool and checking callbacks.
     var children = React.Children.map(this.props.children, function(child) {
       var highlighted = state.highlightedIndex === index;
 
