@@ -2,6 +2,9 @@
 var React = require('react/addons');
 
 var Polyselect = React.createClass({
+  componentDidMount: function() {
+    debugger
+  },
   handleKeyUp: function(event) {
     var code = event.keyCode;
     var highlightedIndex = this.state.highlightedIndex;
