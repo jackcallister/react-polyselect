@@ -2,9 +2,6 @@
 var React = require('react/addons');
 
 var Polyselect = React.createClass({
-  componentDidMount: function() {
-    debugger
-  },
   handleKeyUp: function(event) {
     var code = event.keyCode;
     var highlightedIndex = this.state.highlightedIndex;
@@ -119,6 +116,12 @@ var Polyselect = React.createClass({
       return options;
     });
 
+    var nativeChildren = React.Children.map(this.props.children, function(child) {
+      return (
+        <option name={child.props.name} value={child.props.value} />
+      );
+    });
+
     var selectStyles = {
       display: "none !important"
     }
@@ -129,7 +132,9 @@ var Polyselect = React.createClass({
         <div className="polyselect-dropdown">
           {children}
         </div>
-        <select ref="polyselect" multiple={true} value={this.state.values} style={selectStyles}></select>
+        <select ref="polyselect" multiple={true} value={this.state.values} style={selectStyles}>
+          {nativeChildren}
+        </select>
       </div>
     );
   }
