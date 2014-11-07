@@ -13,7 +13,7 @@ var App = React.createClass({
 
   render: function() {
     return (
-      <Polyselect ref="polyselect">
+      <Polyselect ref="polyselect" name="jack">
         <Polyoption title="My select option" value="1" />
         <Polyoption title="My second select option" value="2" />
         <Polyoption title="My third select option" value="3" />

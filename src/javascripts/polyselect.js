@@ -2,9 +2,6 @@
 var React = require('react/addons');
 
 var Polyselect = React.createClass({
-  componentDidMount: function() {
-    debugger
-  },
   handleKeyUp: function(event) {
     var code = event.keyCode;
     var highlightedIndex = this.state.highlightedIndex;
@@ -25,7 +22,7 @@ var Polyselect = React.createClass({
       }
     // Enter
     } else if (code == 13) {
-      if(this.refs["react-polyselect"].getDOMNode().classList.contains("polyselect-inactive")) {
+      if(!this.state.displayDropdown) {
         this.setState({
           displayDropdown: true
         });
@@ -129,7 +126,7 @@ var Polyselect = React.createClass({
         <div className="polyselect-dropdown">
           {children}
         </div>
-        <select ref="polyselect" multiple={true} value={this.state.values} style={selectStyles}></select>
+        <select ref="polyselect" name={this.props.name} multiple={true} value={this.state.values} style={selectStyles}></select>
       </div>
     );
   }
