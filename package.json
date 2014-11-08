@@ -9,7 +9,8 @@
   "author": "Jack Callister",
   "license": "ISC",
   "dependencies": {
-    "react": "^0.12.0"
+    "react": "^0.12.0",
+    "statics-stylesheets": "0.0.1"
   },
   "repository": {
     "type": "git",
