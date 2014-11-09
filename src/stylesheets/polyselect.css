@@ -9,6 +9,7 @@
   font-family: Helvetica-Light;
   font-size: 1em;
   color: #919191;
+  z-index: 1;
 }
 
 .polyselect-select {
