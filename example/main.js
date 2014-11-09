@@ -7,10 +7,6 @@ var React = require('react'),
 
 var App = React.createClass({
 
-  submit: function() {
-    alert("You selected the following values: "  + this.refs.polyselect.refs.polyselect.props.value)
-  },
-
   render: function() {
     return (
       <Polyselect ref="polyselect" name="jack">

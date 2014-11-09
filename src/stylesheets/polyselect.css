@@ -11,7 +11,6 @@
   color: #919191;
 }
 
-
 .polyselect-select {
   padding: 6px 8px 4px 8px;
   display: block;
@@ -19,13 +18,20 @@
 
 .polyselect-select:after {
   content: "";
-  background: url("../images/chevron.png");
-  width: 8px;
-  height: 14px;
+  width: 0;
+  height: 0;
   display: block;
   position: absolute;
-  right: 8px;
-  top: 8px;
+  right: 10px;
+  top: 12px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #919191;
+}
+
+.polyselect-active .polyselect-select:after {
+  border-top: 0;
+  border-bottom: 5px solid #919191;
 }
 
 .polyselect-dropdown {

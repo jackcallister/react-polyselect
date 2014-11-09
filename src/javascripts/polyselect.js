@@ -1,4 +1,6 @@
 /** @jsx React.DOM */
+require('../stylesheets/polyselect.css');
+
 var React = require('react/addons');
 
 var Polyselect = React.createClass({
