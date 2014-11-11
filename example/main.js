@@ -7,13 +7,9 @@ var React = require('react'),
 
 var App = React.createClass({
 
-  submit: function() {
-    alert("You selected the following values: "  + this.refs.polyselect.refs.polyselect.props.value)
-  },
-
   render: function() {
     return (
-      <Polyselect ref="polyselect">
+      <Polyselect ref="polyselect" name="jack">
         <Polyoption name="opt-1" title="My select option" value="1" />
         <Polyoption name="opt-2" title="My second select option" value="2" />
         <Polyoption name="opt-3" title="My third select option" value="3" />

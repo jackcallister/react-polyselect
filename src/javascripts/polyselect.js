@@ -1,4 +1,6 @@
 /** @jsx React.DOM */
+require('../stylesheets/polyselect.css');
+
 var React = require('react/addons');
 
 var Polyselect = React.createClass({
@@ -22,7 +24,7 @@ var Polyselect = React.createClass({
       }
     // Enter
     } else if (code == 13) {
-      if(this.refs["react-polyselect"].getDOMNode().classList.contains("polyselect-inactive")) {
+      if(!this.state.displayDropdown) {
         this.setState({
           displayDropdown: true
         });
