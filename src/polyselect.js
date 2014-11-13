@@ -112,13 +112,25 @@ var Polyselect = React.createClass({
       return options;
     });
 
+    var nativeChildren = React.Children.map(this.props.children, function(child) {
+      return (
+        <option name={child.props.name} value={child.props.value} />
+      );
+    });
+
+    var selectStyles = {
+      display: "none !important"
+    }
+
     return(
       <div className={"polyselect polyselect-" + displayClass} ref="react-polyselect" onKeyUp={this.handleKeyUp} tabIndex="1">
         <div className="polyselect-select" onClick={this.handleToggle}>{this.props.prompt}</div>
         <div className="polyselect-dropdown">
           {children}
         </div>
-        <select ref="polyselect" name={this.props.name} multiple={true} value={this.state.values}></select>
+        <select ref="polyselect" multiple={true} value={this.state.values} style={selectStyles}>
+          {nativeChildren}
+        </select>
       </div>
     );
   }
