@@ -31,7 +31,7 @@ var Polyoption = React.createClass({
 
     return(
       <div className={"polyselect-option polyselect-option-" + highlightClass}>
-        <input type="checkbox" checked={this.state.selected} onChange={this.toggleCheck} value={this.props.value} />
+        <input tabIndex="-1" type="checkbox" checked={this.state.selected} onChange={this.toggleCheck} value={this.props.value} />
         <span>{this.props.title}</span>
       </div>
     );
