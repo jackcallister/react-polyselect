@@ -5,6 +5,8 @@ var React = require('react'),
     Polyselect = ReactPolyselect.Polyselect,
     Polyoption = ReactPolyselect.Polyoption;
 
+require("!style!css!sass!../src/polyselect.scss");
+
 var App = React.createClass({
 
   render: function() {
