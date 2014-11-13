@@ -6,8 +6,7 @@ var Polyselect = React.createClass({
   handleKeyUp: function(event) {
     var code = event.keyCode;
     var highlightedIndex = this.state.highlightedIndex;
-    var lastIndex = this.props.children.length;
-    --lastIndex;
+    var lastIndex = this.props.children.length - 1;
 
     // Up
     if(code == 38) {
