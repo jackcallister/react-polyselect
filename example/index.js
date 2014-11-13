@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 
 var React = require('react'),
-    ReactPolyselect = require('../src/javascripts/main'),
+    ReactPolyselect = require('../src/index'),
     Polyselect = ReactPolyselect.Polyselect,
     Polyoption = ReactPolyselect.Polyoption;
 

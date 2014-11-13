@@ -2,7 +2,7 @@
   "name": "react-polyselect",
   "version": "0.0.4",
   "description": "",
-  "main": "src/javascripts/polyselect.js",
+  "main": "src/javascripts/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,10 +16,6 @@
     "url": "https://github.com/jarsbe/react-polyselect.git"
   },
   "devDependencies": {
-    "css-loader": "^0.9.0",
-    "file-loader": "^0.8.1",
-    "jsx-loader": "^0.12.1",
-    "style-loader": "^0.8.2",
-    "webpack": "^1.4.12"
+    "jsx-loader": "^0.12.1"
   }
 }

@@ -12,6 +12,10 @@
   z-index: 1;
 }
 
+.polyselect select {
+  display: none;
+}
+
 .polyselect-select {
   padding: 6px 8px 4px 8px;
   display: block;

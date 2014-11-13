@@ -1,7 +1,6 @@
 /** @jsx React.DOM */
-require('../stylesheets/polyselect.css');
 
-var React = require('react/addons');
+var React = require('react');
 
 var Polyselect = React.createClass({
   handleKeyUp: function(event) {
@@ -89,12 +88,7 @@ var Polyselect = React.createClass({
   },
 
   render: function() {
-    var displayClass;
-    if (this.state.displayDropdown) {
-      displayClass = "active";
-    } else {
-      displayClass = "inactive";
-    }
+    var displayClass = this.state.displayDropdown ? "active" : "inactive";
 
     var index = 0,
         state = this.state,
@@ -102,7 +96,7 @@ var Polyselect = React.createClass({
         handleOptionCheck = this.handleOptionCheck;
 
     // Loop through all the children (<polyoption>)
-    // to add ref, highlighted bool and checking callbacks.
+    // to add ref, highlighted bool and toggle callbacks.
     var children = React.Children.map(this.props.children, function(child) {
       var highlighted = state.highlightedIndex === index;
 
@@ -118,17 +112,13 @@ var Polyselect = React.createClass({
       return options;
     });
 
-    var selectStyles = {
-      display: "none !important"
-    }
-
     return(
       <div className={"polyselect polyselect-" + displayClass} ref="react-polyselect" onKeyUp={this.handleKeyUp} tabIndex="1">
         <div className="polyselect-select" onClick={this.handleToggle}>{this.props.prompt}</div>
         <div className="polyselect-dropdown">
           {children}
         </div>
-        <select ref="polyselect" name={this.props.name} multiple={true} value={this.state.values} style={selectStyles}></select>
+        <select ref="polyselect" name={this.props.name} multiple={true} value={this.state.values}></select>
       </div>
     );
   }
