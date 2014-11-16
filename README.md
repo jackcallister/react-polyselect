@@ -50,6 +50,6 @@ The `Polyselect`'s markup matches the native select spec (other than the multise
 ```
 Extracting the value on form submission is simple. If you are using React you can access the value via the polyselect ref `this.ref.polyselect`. If you are using this component as part of a Rails form the name prop used on a hidden select. Just name it correctly to send it as normal params.
 
-### Questios/help
+### Questions/help
 
 If you are struggling feel free to make an issue and I'll do my best to help you. Or if you'd rather be less public (possibly to abuse me) fire an email off to jarsbe@gmail.com. Have a nice day.
