@@ -82,7 +82,8 @@ var Polyselect = React.createClass({
 
   getDefaultProps: function() {
     return {
-      prompt: "Please select"
+      prompt: "Please select",
+      nativeRef: "polyselect"
     };
   },
 
@@ -127,7 +128,7 @@ var Polyselect = React.createClass({
         <div className="polyselect-dropdown">
           {children}
         </div>
-        <select ref="polyselect" multiple={true} value={this.state.values} style={nativeSelectStyles} name={this.props.name}>
+        <select ref={this.props.nativeRef} multiple={true} value={this.state.values} style={nativeSelectStyles} name={this.props.name}>
           {nativeChildren}
         </select>
       </div>
