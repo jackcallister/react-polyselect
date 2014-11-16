@@ -117,7 +117,7 @@ var Polyselect = React.createClass({
       );
     });
 
-    var selectStyles = {
+    var nativeSelectStyles = {
       display: "none !important"
     }
 
@@ -127,7 +127,7 @@ var Polyselect = React.createClass({
         <div className="polyselect-dropdown">
           {children}
         </div>
-        <select ref="polyselect" multiple={true} value={this.state.values} style={selectStyles}>
+        <select ref="polyselect" multiple={true} value={this.state.values} style={nativeSelectStyles} name={this.props.name}>
           {nativeChildren}
         </select>
       </div>
