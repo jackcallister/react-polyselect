@@ -39,7 +39,7 @@ If you are using less I'm sorry! But fear not I plan on including a less stylesh
 
 ### Usage
 
-The `Polyselect`'s markup matches the native select spec (other than the multiselect attribute) as does the `Polyoption` for options. Here's an example.
+The `Polyselect`'s markup matches the native select spec (other than the multiselect attribute) as does the `Polyoption`. Here's an example of how to create a polyselect with three options, each with a title and value.
 
 ```
 <Polyselect name="example">
@@ -48,7 +48,21 @@ The `Polyselect`'s markup matches the native select spec (other than the multise
   <Polyoption name="opt-3" title="My third select option" value="3" />
 </Polyselect>
 ```
-Extracting the value on form submission is simple. If you are using React you can access the value via the polyselect ref `this.ref.polyselect`. If you are using this component as part of a Rails form the name prop used on a hidden select. Just name it correctly to send it as normal params.
+If you are using React you can access the selected values via the polyselect ref `this.ref.polyselect`. This is set to polyselect by default but ff you plan on using multiple polyselects make sure to set a unique `nativeRef` prop for each polyselect.
+
+If you are using this component as part of a regular HTML form you need to set the `name` prop on the polyselect so it submits as in a format your backend expects. If this were in a Rails form where we are creating a new `Library` model which has many `Books` the name prop would look like this.
+
+```
+<Polyoption name="library[books]">
+...
+</Polyselect>
+```
+
+All that we are doing is matching what a regular Rails select helper would output. 
+
+### Installation and Usage for Rails
+
+Unfortunately in Rails npm and module loading systems are not a natural part of the Rails eco-system. You have two options for installing 
 
 ### Questions/help
 
