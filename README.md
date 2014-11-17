@@ -62,7 +62,9 @@ All that we are doing is matching what a regular Rails select helper would outpu
 
 ### Installation and Usage for Rails
 
-Unfortunately in Rails npm and module loading systems are not a natural part of the Rails eco-system. You have two options for installing 
+Unfortunately in Rails npm and module loading systems are not a natural part of the Rails eco-system. You have two options for installing replace the asset pipeline with webpack (or get it working along side it) or use the copy and paste method. The copy and paste method is a highly involved process but I will do my best to guide you through it!
+
+Firstly, copy the polyselect.js, polyoption.js and polyselect.scss files from the src directory of this project. Put the js files inside your components folder of your Rails application (or wherever you store React components). Next put the scss file wherever you please. Finally remove any requires or module.exports from the js files. You should now be able to use the React Polyselect.
 
 ### Questions/help
 
